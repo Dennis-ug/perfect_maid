@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "90661442426",
+    "project_id": "perfect-maid-97dd0",
+    "storage_bucket": "perfect-maid-97dd0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:90661442426:android:fe93bf6bc4be07e0b33cc3",
+        "android_client_info": {
+          "package_name": "dennie.com.perfect_maid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "90661442426-cqja2lkcg3i6fd9aln8lu8luu02e36go.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwEncRU9TiVQnFXWFNpCBeyEsf81rf2gw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "90661442426-cqja2lkcg3i6fd9aln8lu8luu02e36go.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "90661442426-khjc8k8dck2lajssgd26pk2sb2ium476.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "dennie.com.perfectMaid"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
