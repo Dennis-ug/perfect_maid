@@ -86,7 +86,7 @@ class _LandingPageState extends State<LandingPage> {
                     height: size.hyt(24),
                   ),
                   GestureDetector(
-                    onTap: () => Get.to(() => const SignUpView()),
+                    onTap: () => Get.to(() => SignUpView()),
                     child: Container(
                       height: 60,
                       width: double.infinity,

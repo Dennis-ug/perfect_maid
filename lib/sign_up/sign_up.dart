@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../utils/size_gen.dart';
+import 'contro.dart';
 
 class SignUpView extends StatelessWidget {
-  const SignUpView({super.key});
+  SignUpView({super.key});
+  final _contro = Get.put(SignUpController());
 
   @override
   Widget build(BuildContext context) {
@@ -44,88 +47,102 @@ class SignUpView extends StatelessWidget {
               SizedBox(
                 height: size.hyt(48),
               ),
-              TextFormField(
-                decoration: InputDecoration(
-                    focusColor: Colors.white,
-                    focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.white,
+              Form(
+                key: _contro.signUpForm,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "This can't be left blank";
+                        }
+                        return null;
+                      },
+                      controller: _contro.email,
+                      decoration: InputDecoration(
+                          focusColor: Colors.white,
+                          focusedBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white,
+                            ),
+                          ),
+                          label: Text(
+                            "Email",
+                            style: GoogleFonts.poppins(
+                              color: Colors.white,
+                              fontSize: size.hyt(16),
+                              fontWeight: FontWeight.w400,
+                            ),
+                          )),
+                    ),
+                    SizedBox(
+                      height: size.hyt(24),
+                    ),
+                    TextFormField(
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "This can't be left blank";
+                        }
+                        return null;
+                      },
+                      controller: _contro.password,
+                      decoration: InputDecoration(
+                        focusColor: Colors.white,
+                        focusedBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                        label: Text(
+                          "Password",
+                          style: GoogleFonts.poppins(
+                            color: Colors.white,
+                            fontSize: size.hyt(16),
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
                       ),
                     ),
-                    label: Text(
-                      "Email",
-                      style: GoogleFonts.poppins(
-                        color: Colors.white,
-                        fontSize: size.hyt(16),
-                        fontWeight: FontWeight.w400,
+                    SizedBox(
+                      height: size.hyt(24),
+                    ),
+                    TextFormField(
+                      controller: _contro.confirmPassword,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "This can't be left blank";
+                        }
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                        focusColor: Colors.white,
+                        focusedBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                        label: Text(
+                          "Confirm Password",
+                          style: GoogleFonts.poppins(
+                            color: Colors.white,
+                            fontSize: size.hyt(16),
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
                       ),
-                    )),
-              ),
-              SizedBox(
-                height: size.hyt(24),
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                  focusColor: Colors.white,
-                  focusedBorder: const UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.white,
                     ),
-                  ),
-                  label: Text(
-                    "Password",
-                    style: GoogleFonts.poppins(
-                      color: Colors.white,
-                      fontSize: size.hyt(16),
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: size.hyt(24),
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                  focusColor: Colors.white,
-                  focusedBorder: const UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.white,
-                    ),
-                  ),
-                  label: Text(
-                    "Confirm Password",
-                    style: GoogleFonts.poppins(
-                      color: Colors.white,
-                      fontSize: size.hyt(16),
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
+                  ],
                 ),
               ),
               SizedBox(
                 height: size.hyt(32),
               ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.end,
-              //   children: [
-              //     Text(
-              //       "Forgot password?",
-              //       style: GoogleFonts.poppins(
-              //           decoration: TextDecoration.underline,
-              //           decorationColor: const Color(0xff00A6BC),
-              //           color: const Color(0xff00A6BC),
-              //           fontSize: size.hyt(16),
-              //           fontWeight: FontWeight.w400,
-              //           fontStyle: FontStyle.italic),
-              //     ),
-              //   ],
-              // ),
-              // SizedBox(
-              //   height: size.hyt(24),
-              // ),
               GestureDetector(
-                // onTap: () => Get.to(() => const SignIn()),
+                onTap: () {
+                  if (_contro.signUpForm.currentState!.validate()) {
+                    _contro.creatUser();
+                  }
+                },
                 child: Container(
                   height: size.hyt(60),
                   width: double.infinity,

@@ -43,46 +43,53 @@ class SignIn extends StatelessWidget {
               SizedBox(
                 height: size.hyt(48),
               ),
-              TextFormField(
-                decoration: InputDecoration(
-                    focusColor: Colors.white,
-                    focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.white,
+              Form(
+                // key: _,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      decoration: InputDecoration(
+                          focusColor: Colors.white,
+                          focusedBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white,
+                            ),
+                          ),
+                          label: Text(
+                            "Email",
+                            style: GoogleFonts.poppins(
+                              color: Colors.white,
+                              fontSize: size.hyt(16),
+                              fontWeight: FontWeight.w400,
+                            ),
+                          )),
+                    ),
+                    SizedBox(
+                      height: size.hyt(24),
+                    ),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        focusColor: Colors.white,
+                        focusedBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                        label: Text(
+                          "Password",
+                          style: GoogleFonts.poppins(
+                            color: Colors.white,
+                            fontSize: size.hyt(16),
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
                       ),
                     ),
-                    label: Text(
-                      "Email",
-                      style: GoogleFonts.poppins(
-                        color: Colors.white,
-                        fontSize: size.hyt(16),
-                        fontWeight: FontWeight.w400,
-                      ),
-                    )),
-              ),
-              SizedBox(
-                height: size.hyt(24),
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                  focusColor: Colors.white,
-                  focusedBorder: const UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.white,
+                    SizedBox(
+                      height: size.hyt(24),
                     ),
-                  ),
-                  label: Text(
-                    "Password",
-                    style: GoogleFonts.poppins(
-                      color: Colors.white,
-                      fontSize: size.hyt(16),
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
+                  ],
                 ),
-              ),
-              SizedBox(
-                height: size.hyt(24),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
