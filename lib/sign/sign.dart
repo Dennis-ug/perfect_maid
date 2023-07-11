@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:perfect_maid/utils/size_gen.dart';
 
+import 'control.dart';
+
 class SignIn extends StatelessWidget {
-  const SignIn({super.key});
+  SignIn({super.key});
+  final _contro = Get.put(SignInController());
 
   @override
   Widget build(BuildContext context) {
@@ -44,10 +48,17 @@ class SignIn extends StatelessWidget {
                 height: size.hyt(48),
               ),
               Form(
-                // key: _,
+                key: _contro.signInForm,
                 child: Column(
                   children: [
                     TextFormField(
+                      controller: _contro.email,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "This can't be left blank";
+                        }
+                        return null;
+                      },
                       decoration: InputDecoration(
                           focusColor: Colors.white,
                           focusedBorder: const UnderlineInputBorder(
@@ -68,6 +79,13 @@ class SignIn extends StatelessWidget {
                       height: size.hyt(24),
                     ),
                     TextFormField(
+                      controller: _contro.password,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "This can't be left blank";
+                        }
+                        return null;
+                      },
                       decoration: InputDecoration(
                         focusColor: Colors.white,
                         focusedBorder: const UnderlineInputBorder(
@@ -110,7 +128,11 @@ class SignIn extends StatelessWidget {
                 height: size.hyt(24),
               ),
               GestureDetector(
-                // onTap: () => Get.to(() => const SignIn()),
+                onTap: () {
+                  if (_contro.signInForm.currentState!.validate()) {
+                    _contro.signIn();
+                  }
+                },
                 child: Container(
                   height: size.hyt(60),
                   width: double.infinity,
