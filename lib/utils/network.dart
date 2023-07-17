@@ -19,7 +19,7 @@ class UserManagment {
         email: emailAddress,
         password: password,
       );
-      snackBar('snackBar');
+      snackBar('account created');
       Get.to(() => const HomeView());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -49,6 +49,7 @@ class UserManagment {
       Get.to(() => const HomeView());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
+        snackBarError('No user found for that email.');
         debugPrint('No user found for that email.');
       } else if (e.code == 'wrong-password') {
         snackBarError('Wrong password provided for that user.');
@@ -61,17 +62,27 @@ class UserManagment {
 class DataManagment {
   static Future<void> createApplication(
       {required File dp, required Map<String, String> info}) async {
-    final storageRef = FirebaseStorage.instance.ref("user_dp");
-    storageRef.putFile(dp);
-    final String dpUrl = await storageRef.getDownloadURL();
-    //Adding User info
-    final db = FirebaseFirestore.instance;
+    try {
+      debugPrint(dp.path.split('/').last);
+      final storageRef =
+          FirebaseStorage.instance.ref("user_dp/${dp.path.split('/').last}");
+      storageRef.putFile(dp);
+      final String dpUrl = await storageRef.getDownloadURL();
+      //Adding User info
+      final db = FirebaseFirestore.instance;
 
 // Add a new document with a generated ID
-    await db
-        .collection("users")
-        .add(info.addAll({'dp': dpUrl}) as Map<String, String>)
-        .then((DocumentReference doc) =>
-            print('DocumentSnapshot added with ID: ${doc.id}'));
+      await db.collection("applications").add({
+        "info": info,
+        "dp": dpUrl,
+      }).then((DocumentReference doc) =>
+          print('DocumentSnapshot added with ID: ${doc.id}'));
+      await dp.delete();
+      Get.back();
+      snackBar('application sent');
+    } catch (e) {
+      debugPrint(e.toString());
+      snackBarError(e.toString());
+    }
   }
 }

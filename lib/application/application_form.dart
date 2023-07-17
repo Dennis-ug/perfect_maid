@@ -304,7 +304,7 @@ class ApplicationForm extends StatelessWidget {
                   DropdownButtonFormField<String>(
                     // controller: _contro.email,
                     validator: (value) {
-                      if (value!.isEmpty) {
+                      if (value == '') {
                         return "This can't be left blank";
                       }
                       return null;
@@ -392,30 +392,42 @@ class ApplicationForm extends StatelessWidget {
                   SizedBox(
                     height: size.hyt(24),
                   ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      height: size.hyt(60),
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          color: Color(0xff20494F),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Color(0xff20494F).withOpacity(0.4),
-                                offset: Offset(0, 4),
-                                blurRadius: 19)
-                          ]),
-                      child: Center(
-                          child: Text(
-                        "Apply",
-                        style: GoogleFonts.poppins(
-                          color: Colors.white,
-                          fontSize: size.hyt(20),
-                          fontWeight: FontWeight.w400,
-                        ),
-                      )),
-                    ),
+                  Obx(
+                    () => _contro.isLoading.value == false
+                        ? GestureDetector(
+                            onTap: () {
+                              if (_contro.applicationKey.currentState!
+                                  .validate()) {
+                                _contro.createApplication();
+                              }
+                            },
+                            child: Container(
+                              height: size.hyt(60),
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12),
+                                  color: Color(0xff20494F),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color:
+                                            Color(0xff20494F).withOpacity(0.4),
+                                        offset: Offset(0, 4),
+                                        blurRadius: 19)
+                                  ]),
+                              child: Center(
+                                  child: Text(
+                                "Apply",
+                                style: GoogleFonts.poppins(
+                                  color: Colors.white,
+                                  fontSize: size.hyt(20),
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              )),
+                            ),
+                          )
+                        : CircularProgressIndicator(
+                            color: Color(0xff20494F),
+                          ),
                   ),
                   SizedBox(
                     height: size.hyt(40),

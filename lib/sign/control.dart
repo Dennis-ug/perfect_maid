@@ -7,8 +7,13 @@ class SignInController extends GetxController {
   final signInForm = GlobalKey<FormState>();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
-  Future<void> signIn() async => await UserManagment.userSignIn(
-        emailAddress: email.text,
-        password: password.text,
-      );
+  var isLoading = false.obs;
+  Future<void> signIn() async {
+    isLoading.value = true;
+    await UserManagment.userSignIn(
+      emailAddress: email.text,
+      password: password.text,
+    );
+    isLoading.value = false;
+  }
 }

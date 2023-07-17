@@ -8,8 +8,13 @@ class SignUpController extends GetxController {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController confirmPassword = TextEditingController();
-  Future<void> creatUser() async => await UserManagment.createUser(
-        emailAddress: email.text,
-        password: password.text,
-      );
+  var isLoading = false.obs;
+  Future<void> creatUser() async {
+    isLoading.value = true;
+    await UserManagment.createUser(
+      emailAddress: email.text,
+      password: password.text,
+    );
+    isLoading.value = false;
+  }
 }

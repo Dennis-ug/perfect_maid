@@ -17,6 +17,7 @@ class ApplicationController extends GetxController {
   String field = '';
   TextEditingController desp = TextEditingController();
   var dp = File('').obs;
+  var isLoading = false.obs;
   final ImagePicker picker = ImagePicker();
 
   final applicationKey = GlobalKey<FormState>();
@@ -52,8 +53,9 @@ class ApplicationController extends GetxController {
     }
   }
 
-  void createApplication() {
-    DataManagment.createApplication(
+  Future<void> createApplication() async {
+    isLoading.value = true;
+    await DataManagment.createApplication(
       dp: dp.value,
       info: {
         'first_name': firstName.text,
@@ -66,5 +68,8 @@ class ApplicationController extends GetxController {
         'desc': desp.text
       },
     );
+    isLoading.value = false;
+    // Future.delayed(Duration(seconds: 1));
+    // Get.back();
   }
 }
