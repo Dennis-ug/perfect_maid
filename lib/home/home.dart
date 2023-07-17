@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../application/application_form.dart';
 import '../sign/sign.dart';
 import '../utils/size_gen.dart';
 
@@ -117,7 +118,7 @@ class HomeView extends StatelessWidget {
                 height: size.hyt(48),
               ),
               GestureDetector(
-                // onTap: () => Get.to(() => SignUpView()),
+                onTap: () => Get.to(() => ApplicationForm()),
                 child: Container(
                   height: 60,
                   width: double.infinity,
@@ -128,7 +129,7 @@ class HomeView extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      "Work with Us",
+                      "Want to work with us?",
                       style: GoogleFonts.poppins(
                         fontSize: size.hyt(20),
                         color: Colors.white,
