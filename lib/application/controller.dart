@@ -14,6 +14,7 @@ class ApplicationController extends GetxController {
   TextEditingController dob = TextEditingController();
   TextEditingController nin = TextEditingController();
   TextEditingController email = TextEditingController();
+  TextEditingController cont = TextEditingController();
   String field = '';
   TextEditingController desp = TextEditingController();
   var dp = File('').obs;
@@ -21,6 +22,7 @@ class ApplicationController extends GetxController {
   final ImagePicker picker = ImagePicker();
 
   final applicationKey = GlobalKey<FormState>();
+
   Future<void> getImage(ImageSource source) async {
     Get.back();
     final XFile? image = await picker.pickImage(source: source);
@@ -65,7 +67,8 @@ class ApplicationController extends GetxController {
         'nin': nin.text,
         'email': email.text,
         'field': field,
-        'desc': desp.text
+        'desc': desp.text,
+        'contact': cont.text,
       },
     );
     isLoading.value = false;

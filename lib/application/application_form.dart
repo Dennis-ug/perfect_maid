@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -230,6 +231,21 @@ class ApplicationForm extends StatelessWidget {
                         )),
                   ),
                   TextFormField(
+                    readOnly: true,
+                    onTap: () async {
+                      DateTime? newDateTime = await showRoundedDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(DateTime.now().year - 1),
+                        lastDate: DateTime(DateTime.now().year + 1),
+                        borderRadius: 12,
+                      );
+                      if (newDateTime != null) {
+                        String newDate =
+                            '${newDateTime.day}/${newDateTime.month}/${newDateTime.year}';
+                        _contro.dob.text = newDate;
+                      }
+                    },
                     controller: _contro.dob,
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -364,6 +380,31 @@ class ApplicationForm extends StatelessWidget {
                     onChanged: (String? value) {
                       _contro.field = value!;
                     },
+                  ),
+                  TextFormField(
+                    keyboardType: TextInputType.phone,
+                    controller: _contro.cont,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "This can't be left blank";
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                        focusColor: Color(0xff20494F),
+                        focusedBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0xff20494F),
+                          ),
+                        ),
+                        label: Text(
+                          "Contact",
+                          style: GoogleFonts.poppins(
+                            color: Color(0xff20494F),
+                            fontSize: size.hyt(16),
+                            fontWeight: FontWeight.w400,
+                          ),
+                        )),
                   ),
                   TextFormField(
                     controller: _contro.desp,

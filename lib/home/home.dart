@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../application/application_form.dart';
+import '../job/view.dart';
 import '../sign/sign.dart';
 import '../utils/size_gen.dart';
 
@@ -80,9 +81,16 @@ class HomeView extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SvgPicture.asset(
-                    'assets/svg/laundry.svg',
-                    semanticsLabel: 'Acme Logo',
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(() => JobView(
+                            index: 0,
+                          ));
+                    },
+                    child: SvgPicture.asset(
+                      'assets/svg/laundry.svg',
+                      semanticsLabel: 'Acme Logo',
+                    ),
                   ),
                   SvgPicture.asset(
                     'assets/svg/clean.svg',
