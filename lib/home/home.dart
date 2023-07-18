@@ -92,13 +92,27 @@ class HomeView extends StatelessWidget {
                       semanticsLabel: 'Acme Logo',
                     ),
                   ),
-                  SvgPicture.asset(
-                    'assets/svg/clean.svg',
-                    semanticsLabel: 'Acme Logo',
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(() => JobView(
+                            index: 1,
+                          ));
+                    },
+                    child: SvgPicture.asset(
+                      'assets/svg/clean.svg',
+                      semanticsLabel: 'Acme Logo',
+                    ),
                   ),
-                  SvgPicture.asset(
-                    'assets/svg/maid.svg',
-                    semanticsLabel: 'Acme Logo',
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(() => JobView(
+                            index: 2,
+                          ));
+                    },
+                    child: SvgPicture.asset(
+                      'assets/svg/maid.svg',
+                      semanticsLabel: 'Acme Logo',
+                    ),
                   )
                 ],
               ),
@@ -108,13 +122,27 @@ class HomeView extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SvgPicture.asset(
-                    'assets/svg/delivery.svg',
-                    semanticsLabel: 'Acme Logo',
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(() => JobView(
+                            index: 3,
+                          ));
+                    },
+                    child: SvgPicture.asset(
+                      'assets/svg/delivery.svg',
+                      semanticsLabel: 'Acme Logo',
+                    ),
                   ),
-                  SvgPicture.asset(
-                    'assets/svg/hire.svg',
-                    semanticsLabel: 'Acme Logo',
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(() => JobView(
+                            index: 4,
+                          ));
+                    },
+                    child: SvgPicture.asset(
+                      'assets/svg/hire.svg',
+                      semanticsLabel: 'Acme Logo',
+                    ),
                   ),
                   SvgPicture.asset(
                     'assets/svg/contact.svg',

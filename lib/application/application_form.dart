@@ -342,9 +342,9 @@ class ApplicationForm extends StatelessWidget {
                         )),
                     items: [
                       DropdownMenuItem(
-                        value: "Laundary",
+                        value: "Laundary services",
                         child: Text(
-                          "Laundary",
+                          "Laundary services",
                           style: dropDownStyle,
                         ),
                       ),
